@@ -1,5 +1,5 @@
-; Search AIA 171 Angstrom data for the 6th december 2010 with a cadence of 3600 seconds (1 hour)
-results = VSO_SEARCH('6-dec-2010', '7-dec-2010', inst='aia', wave='171', sample=3600)
+; Download aia files with ssw/idl
+results = VSO_SEARCH('11-nov-2022 11:40', '11-nov-2022 11:45', inst='aia', wave='171')
 
 ; Sort the results by date and print the date
 results = results(SORT(cat.time.start))
