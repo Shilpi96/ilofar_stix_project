@@ -51,3 +51,15 @@ nrh_map.plot(cmap="viridis")
 nrh_map.draw_limb(color='w')
 nrh_map.draw_grid(color='w')
 plt.show()
+
+###### Plot radio contours on aia data
+aia_map = sunpy.map.Map("/mnt/LOFAR-PSP/ilofar_STIX_shilpi/aia_data/data_211/AIA.20221111_113933.0211.image_lev1.fits")
+
+with frames.Helioprojective.assume_spherical_screen(aia_map.observer_coordinate):
+    nrh_map2 = nrh_map.reproject_to(aia_map.wcs)
+
+fig = plt.figure()
+ax = fig.add_subplot(projection=aia_map)
+aia_map.plot()
+nrh_map2.draw_contours(levels=np.arange(50, 100, 10)*u.percent)
+plt.show()
