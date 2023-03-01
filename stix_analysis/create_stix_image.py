@@ -41,7 +41,7 @@ stix_map.draw_grid(color='w')
 path = '/mnt/LOFAR-PSP/ilofar_STIX_shilpi/aia_data/data_171/'
 map_aia = sunpy.map.Map(path + 'AIA.20221111_113009.0171.image_lev1.fits')
 
-
+#### Method 1 to reproject it
 out_header = sunpy.map.make_fitswcs_header(stix_map.data,coordinate = map_aia.reference_coordinate.replicate(rsun=stix_map.reference_coordinate.rsun),scale=u.Quantity(map_aia.scale))
 
 pdb.set_trace()
@@ -56,6 +56,21 @@ ax2 = fig.add_subplot(122, projection=outmap)
 outmap.plot(axes=ax2, title='stix image as seen from SDO')
 
 stix_map.draw_limb(color='blue')
+
+
+plt.show()
+
+#### Method 2 to reproject
+with frames.Helioprojective.assume_spherical_screen(map_aia.observer_coordinate):
+    stix_map2 = stix_map.reproject_to(map_aia.wcs)
+
+fig = plt.figure()
+ax1 = fig.add_subplot(121, projection=stix_map)
+stix_map.plot(axes=ax1)
+ax2 = fig.add_subplot(122, projection=stix_map2)
+stix_map2.plot(axes=ax2, title='stix image as seen from SDO')
+
+stix_map2.draw_limb(color='blue')
 
 
 plt.show()
