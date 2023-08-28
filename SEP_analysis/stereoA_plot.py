@@ -18,6 +18,11 @@ df, meta = stereo_load(instrument=instrument, startdate=startdate, enddate=endda
 #pdb.set_trace()
 #df.Electron_Flux_1.plot(logy=True, ylabel=meta['Electron_Flux_UNITS'], label=meta['Electron_Bins_Text'][1][0], 
 #                        title='STEREO/HET electrons')
+##### save the data, e_bins and times
+root = '/Users/shilpibhunia/Library/Mobile Documents/com~apple~CloudDocs/ilofar_stix_project/codes/epd_analysis/stereo_data'
+np.save(root+'sept_data.npy',data)
+np.save(root+'e_bins.npy',bins_array)
+np.save(root+'times.npy',times)
 
 fig, ax = plt.subplots()
 channels = ["ch_"+str(i+2) for i in range(10)]
