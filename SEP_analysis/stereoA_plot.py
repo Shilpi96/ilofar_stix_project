@@ -25,8 +25,16 @@ np.save(root+'e_bins.npy',bins_array)
 np.save(root+'times.npy',times)
 
 fig, ax = plt.subplots()
-channels = ["ch_"+str(i+2) for i in range(10)]
+channels = ["ch_"+str(i+2) for i in range(15)]
 bins = meta["ch_strings"].tolist()
+bins_array = meta["ch_strings"].values
+data = df[channels].values
+times = df.index.values
+##### save the data, e_bins and times
+root = '/Users/shilpibhunia/Library/Mobile Documents/com~apple~CloudDocs/ilofar_stix_project/codes/epd_analysis/stereo_data'
+np.save(root+'sept_data.npy',data)
+np.save(root+'e_bins.npy',bins_array)
+np.save(root+'times.npy',times)
 ax.set_prop_cycle('color', plt.cm.winter(np.linspace(0,1,len(channels))))
 
 for i in range(len(channels)):
