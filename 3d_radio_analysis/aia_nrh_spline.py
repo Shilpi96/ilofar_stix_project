@@ -118,7 +118,7 @@ def make_img(aia_list, tidx,dtime, ax,clist,ax1,ax2,ax3,elev = [90,0],azim = [-9
 	newPoints = splev(u_param, tck)
 	# draw the spline fit curve, represents the trajectory
 	
-	[axs[i].plot3D(newPoints[:][0], newPoints[:][1], newPoints[:][2], 'black', linewidth = 1) for i in range(2)]
+	[axs[i].plot3D(newPoints[:][0], newPoints[:][1], newPoints[:][2], 'black', linewidth = 1) for i in range(3)]
 	
 	#### Plot the 3d coords of radio sopurces
 	[axs[i].grid(False) for i in range(3)]
