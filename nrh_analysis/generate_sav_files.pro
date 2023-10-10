@@ -1,4 +1,4 @@
-;Go to swwidl and then type generate_sav_files and it will generate the sav files.
+;Go to swwidl and then type .r read_nrh_maps and then .r generate_sav_files and then again type generate_sav_files.
 pro generate_sav_files
   
 root_dir ="/mnt/LOFAR-PSP/ilofar_STIX_shilpi/all_radio_data/nrh_fits/"
