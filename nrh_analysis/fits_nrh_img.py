@@ -19,18 +19,6 @@ def get_time(hdul):
 	times = np.array([datetime.strptime(times_datetime.isot[i], "%Y-%m-%dT%H:%M:%S.%f") for i in range(times_datetime.shape[0])])
 	return times
 	
-def calculate_cdelt_from_header(date,header):
-    solar_r_pix = header.get('SOLAR_R')
-    if solar_r_pix is None:
-        raise ValueError("Le mot-clé SOLAR_R est manquant dans l'en-tête.")
-
-    solar_r_pix = header.get('SOLAR_R')
-    time_obj = Time(date)
-    solar_r_arcsec = sun.angular_radius(time_obj)
-    solar_r_arcsec = 960  # Rayon solaire en arcsec
-    cdelt_arcsec = solar_r_arcsec / solar_r_pix
-    return -cdelt_arcsec, cdelt_arcsec  # X négatif, Y positif
-
 def nrh_sunpy_map(nrh, dtime =  datetime(2022, 11, 11, 11, 32, 1, 400000)):
     hdul = fits.open(fits_file)
     times = get_time(hdul)
